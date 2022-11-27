@@ -31,10 +31,10 @@ keywords = []
 text = "LICENSE"
 
 [project.urls]
-homepage = "https://GitHub.com/py_libget/"
-"bug tracker" = "https://GitHub.com/py_libget/issues"
-documentation = "https://GitHub.com/py_libget/"
-repository = "https://GitHub.com/py_libget/"
+homepage = "https://github.com/fortheusers/py_libget"
+"bug tracker" = "https://github.com/fortheusers/py_libget/issues"
+documentation = "https://github.com/fortheusers/py_libget"
+repository = "https://github.com/fortheusers/py_libget"
 
 [tool.setuptools.dynamic.version]
 attr = "py_libget.version"
