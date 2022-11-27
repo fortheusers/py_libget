@@ -1,4 +1,4 @@
-# py_libget 0.0.5<a name="mark0"></a>
+# py_libget 0.0.6<a name="mark0"></a>
 
 ***Module for handling libget packages.***
 
@@ -6,19 +6,22 @@
 - [Dependencies](#mark2)
 - [Installation](#mark3)
 - [Usage](#mark4)
-- [Objects](#mark5)
-	- [repository](#mark6)
-	- [package_manager](#mark7)
-	- [parser](#mark8)
-	- [webhandler](#mark9)
-- [Credits / Thanks](#mark10)
-- [Changelog](#mark11)
-	- [0.0.5](#mark12)
-	- [0.0.4](#mark13)
-	- [0.0.3](#mark14)
-	- [0.0.2](#mark15)
-	- [0.0.1](#mark16)
-	- [0.0.0](#mark17)
+	- [Command Line Usage](#mark5)
+	- [Module Usage](#mark6)
+		- [Objects](#mark7)
+			- [repository](#mark8)
+			- [package_manager](#mark9)
+			- [parser](#mark10)
+			- [webhandler](#mark11)
+- [Credits / Thanks](#mark12)
+- [Changelog](#mark13)
+	- [0.0.6](#mark14)
+	- [0.0.5](#mark15)
+	- [0.0.4](#mark16)
+	- [0.0.3](#mark17)
+	- [0.0.2](#mark18)
+	- [0.0.1](#mark19)
+	- [0.0.0](#mark20)
 
 ---
 
@@ -43,6 +46,58 @@ None
 Available on pip - `pip install py_libget`
 
 # Usage<a name="mark4"></a>[^](#mark0)
+
+## Command Line Usage<a name="mark5"></a>[^](#mark4)
+
+```
+usage: python -m py_libget [-h] [-b BUNDLE] [-i INSTALL [INSTALL ...]]
+                   [-u UNINSTALL [UNINSTALL ...]]
+                   [-sc SCREENSHOT [SCREENSHOT ...]] [-ic ICON [ICON ...]]
+                   repository [install_path]
+
+py_libget CLI - Interact with libget repositories and manage package
+installs. Runs Bundle -> Install -> Uninstall processes if multiple are
+specified.
+
+positional arguments:
+  repository            URL of the libget repository.
+  install_path          Path to SD Card root or target dir. Defaults to
+                        current working dir if not specified.
+
+options:
+  -h, --help            show this help message and exit
+  -b BUNDLE, --bundle BUNDLE
+                        Path to bundle file. Bundles files are plaintext
+                        with one package name per line, comments are
+                        allowed by starting a line with a #. Will install
+                        / update all packages in the bundle
+  -i INSTALL [INSTALL ...], --install INSTALL [INSTALL ...]
+                        List of package names to install / update,
+                        separated by spaces.
+  -u UNINSTALL [UNINSTALL ...], --uninstall UNINSTALL [UNINSTALL ...]
+                        List of package names to uninstall, separated by
+                        spaces.
+  -sc SCREENSHOT [SCREENSHOT ...], --screenshot SCREENSHOT [SCREENSHOT ...]
+                        Provide one or more package names separated by
+                        spaces (minimum 1), screenshots will be downloaded
+                        to cache. A map of the downloaded files will be
+                        printed on download completion.
+  -ic ICON [ICON ...], --icon ICON [ICON ...]
+                        Provide one or more package names separated by
+                        spaces (minimum 1), icons will be downloaded to
+                        cache. A map of the downloaded files will be
+                        printed on download completion.
+
+```
+
+For example:
+
+To install the "appstore" and "vgedit" package from the 4TU Switch repository to an SD card located at D:/:
+
+`python -m src https://www.switchbru.com/appstore/ -i appstore vgedit D:/`
+
+
+## Module Usage<a name="mark6"></a>[^](#mark4)
 
 ```python
 from py_libget import repository
@@ -78,9 +133,9 @@ if not repo.check_if_get_init():
 repo.install_package(package)
 # repo.uninstall_package(package)
 ```
-## Objects<a name="mark5"></a>[^](#mark0)
+### Objects<a name="mark7"></a>[^](#mark6)
 
-### repository<a name="mark6"></a>[^](#mark5)
+### repository<a name="mark8"></a>[^](#mark7)
 **An object for interacting with all parts of a libget repository.**
 
 ```py
@@ -140,7 +195,7 @@ class repository(package_manager, parser, webhandler):
 	def uninstall_package(self, package: dict, handler: Callable = None) -> None:
 		"""Uninstalls a libget package, supply a callable handler to take a tuple containing a status and a message. A negative status is an error. Status is in the form of an integer from 0 to 100 during normal install progression. `Returns None`"""
 ```
-### package_manager<a name="mark7"></a>[^](#mark5)
+### package_manager<a name="mark9"></a>[^](#mark7)
 **Object for managing libget package installation**
 
 ```py
@@ -174,7 +229,7 @@ class package_manager(object):
 	def uninstall_package(self, package: dict, handler: Callable = None) -> None:
 		"""Uninstalls a libget package, supply a callable handler to take a tuple containing a status and a message. A negative status is an error. Status is in the form of an integer from 0 to 100 during normal install progression. `Returns None`"""
 ```
-### parser<a name="mark8"></a>[^](#mark5)
+### parser<a name="mark10"></a>[^](#mark7)
 **Object to hold and parse libget repos**
 
 ```py
@@ -192,7 +247,7 @@ class parser(object):
 	def load_repo_file(self, repo_file: str) -> list:
 		"""Loads appstore json. `Returns a List of Dicts`"""
 ```
-### webhandler<a name="mark9"></a>[^](#mark5)
+### webhandler<a name="mark11"></a>[^](#mark7)
 **Object to handle libget icon, screenshot, and package zip downloads.**
 
 ```py
@@ -212,33 +267,37 @@ class webhandler(object):
 	def get_screenshot(self, name: str, force: bool = False) -> str:
 		"""Downloads screenshot for a given package if needed. The force keyword argument forces a redownload of the file. `Returns the screenshot file's path as a String`"""
 ```
-# Credits / Thanks<a name="mark10"></a>[^](#mark0)
+# Credits / Thanks<a name="mark12"></a>[^](#mark0)
 
 Special thanks to vgmoose and the 4TU team for the libget standard. https://gitlab.com/4TU/libget
 
-# Changelog<a name="mark11"></a>[^](#mark0)
+# Changelog<a name="mark13"></a>[^](#mark0)
 
-## 0.0.5<a name="mark12"></a>[^](#mark11)
+## 0.0.6<a name="mark14"></a>[^](#mark13)
+
+Added instructions for command line usage
+
+## 0.0.5<a name="mark15"></a>[^](#mark13)
 
 Fix PyPi URLs
 
-## 0.0.4<a name="mark13"></a>[^](#mark11)
+## 0.0.4<a name="mark16"></a>[^](#mark13)
 
 Fix readme, bump version on pypi to display updated readme.
 
-## 0.0.3<a name="mark14"></a>[^](#mark11)
+## 0.0.3<a name="mark17"></a>[^](#mark13)
 
 Improve readme / add credits
 
-## 0.0.2<a name="mark15"></a>[^](#mark11)
+## 0.0.2<a name="mark18"></a>[^](#mark13)
 
 Fix readme.
 
-## 0.0.1<a name="mark16"></a>[^](#mark11)
+## 0.0.1<a name="mark19"></a>[^](#mark13)
 
 Cleanup, fix readme.
 
-## 0.0.0<a name="mark17"></a>[^](#mark11)
+## 0.0.0<a name="mark20"></a>[^](#mark13)
 
 Create Project
 

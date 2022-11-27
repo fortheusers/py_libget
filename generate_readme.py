@@ -34,6 +34,55 @@ if not repo.check_if_get_init():
 repo.install_package(package)
 # repo.uninstall_package(package)"""
 
+
+cli_usage = """usage: python -m py_libget [-h] [-b BUNDLE] [-i INSTALL [INSTALL ...]]
+                   [-u UNINSTALL [UNINSTALL ...]]
+                   [-sc SCREENSHOT [SCREENSHOT ...]] [-ic ICON [ICON ...]]
+                   repository [install_path]
+
+py_libget CLI - Interact with libget repositories and manage package
+installs. Runs Bundle -> Install -> Uninstall processes if multiple are
+specified.
+
+positional arguments:
+  repository            URL of the libget repository.
+  install_path          Path to SD Card root or target dir. Defaults to
+                        current working dir if not specified.
+
+options:
+  -h, --help            show this help message and exit
+  -b BUNDLE, --bundle BUNDLE
+                        Path to bundle file. Bundles files are plaintext
+                        with one package name per line, comments are
+                        allowed by starting a line with a #. Will install
+                        / update all packages in the bundle
+  -i INSTALL [INSTALL ...], --install INSTALL [INSTALL ...]
+                        List of package names to install / update,
+                        separated by spaces.
+  -u UNINSTALL [UNINSTALL ...], --uninstall UNINSTALL [UNINSTALL ...]
+                        List of package names to uninstall, separated by
+                        spaces.
+  -sc SCREENSHOT [SCREENSHOT ...], --screenshot SCREENSHOT [SCREENSHOT ...]
+                        Provide one or more package names separated by
+                        spaces (minimum 1), screenshots will be downloaded
+                        to cache. A map of the downloaded files will be
+                        printed on download completion.
+  -ic ICON [ICON ...], --icon ICON [ICON ...]
+                        Provide one or more package names separated by
+                        spaces (minimum 1), icons will be downloaded to
+                        cache. A map of the downloaded files will be
+                        printed on download completion.
+"""
+
+cli_example = """
+For example:
+
+To install the "appstore" and "vgedit" package from the 4TU Switch repository to an SD card located at D:/:
+
+`python -m src https://www.switchbru.com/appstore/ -i appstore vgedit D:/`
+"""
+
+
 thanks = "Special thanks to vgmoose and the 4TU team for the libget standard. https://gitlab.com/4TU/libget"
 
 
@@ -71,9 +120,17 @@ try:
     gen.add_heading_1("Installation", add_toc=True)
     gen.add_paragraph(installation_message)
     gen.add_heading_1("Usage", add_toc=True)
+    gen.increase_toc_depth()
+    gen.add_heading_2("Command Line Usage", add_toc=True)
+    gen.add_code_block(cli_usage, lang="")
+    gen.add_paragraph(cli_example)
+    gen.add_heading_2("Module Usage", add_toc=True)
     gen.add_code_block(basic_usage)
-    gen.add_heading_2("Objects", add_toc=True)
+    gen.increase_toc_depth()
+    gen.add_heading_3("Objects", add_toc=True)
     gen.handle_class_list([repository, package_manager, parser, webhandler])
+    gen.decrease_toc_depth()
+    gen.decrease_toc_depth()
     gen.add_heading("Credits / Thanks", add_toc=True)
     gen.add_paragraph(thanks)
     with open(os.path.join(os.path.dirname(__file__), "README.md"), "w+") as f:
