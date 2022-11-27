@@ -1,4 +1,4 @@
-# py_libget 0.0.3<a name="mark0"></a>
+# py_libget 0.0.4<a name="mark0"></a>
 
 ***Module for handling libget packages.***
 
@@ -13,10 +13,11 @@
 	- [webhandler](#mark9)
 - [Credits / Thanks](#mark10)
 - [Changelog](#mark11)
-	- [0.0.3](#mark12)
-	- [0.0.2](#mark13)
-	- [0.0.1](#mark14)
-	- [0.0.0](#mark15)
+	- [0.0.4](#mark12)
+	- [0.0.3](#mark13)
+	- [0.0.2](#mark14)
+	- [0.0.1](#mark15)
+	- [0.0.0](#mark16)
 
 ---
 
@@ -216,19 +217,23 @@ Special thanks to vgmoose and the 4TU team for the libget standard. https://gitl
 
 # Changelog<a name="mark11"></a>[^](#mark0)
 
-## 0.0.3<a name="mark12"></a>[^](#mark11)
+## 0.0.4<a name="mark12"></a>[^](#mark11)
+
+Fix readme, bump version on pypi to display updated readme.
+
+## 0.0.3<a name="mark13"></a>[^](#mark11)
 
 Improve readme / add credits
 
-## 0.0.2<a name="mark13"></a>[^](#mark11)
+## 0.0.2<a name="mark14"></a>[^](#mark11)
 
 Fix readme.
 
-## 0.0.1<a name="mark14"></a>[^](#mark11)
+## 0.0.1<a name="mark15"></a>[^](#mark11)
 
 Cleanup, fix readme.
 
-## 0.0.0<a name="mark15"></a>[^](#mark11)
+## 0.0.0<a name="mark16"></a>[^](#mark11)
 
 Create Project
 
