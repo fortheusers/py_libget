@@ -79,7 +79,7 @@ For example:
 
 To install the "appstore" and "vgedit" package from the 4TU Switch repository to an SD card located at D:/:
 
-`python -m src https://www.switchbru.com/appstore/ -i appstore vgedit D:/`
+`python -m py_libget https://www.switchbru.com/appstore/ -i appstore vgedit D:/`
 """
 
 
@@ -90,7 +90,7 @@ about = """This module was created to simplify testing and development with libg
 
 py_libget maintains a cache of previously downloaded icons, screenshots and repo jsons and uses an etagging system to minimize redownloads and save bandwidth.
 The install / uninstall process should be thread-safe as long as you don't install duplicates of the same package at the same time and don't install and uninstall the same package at the same time.
-The install method takes a callback that allows it to update frontends (GUISs, Flask apps, etc) from the backend thread.
+The install method takes a callback that allows it to update frontends (GUIs, Flask apps, etc) from the backend thread.
 
 It also includes a command line mode for use in scripting, the command line mode has a `--bundle` option that allows you to batch install a list of packages or generate a zip that can be extracted to an SD card.
 There are also a number of other features, see `python -m py_libget -help` for more details on command line usage.
