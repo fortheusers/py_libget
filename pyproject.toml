@@ -1,0 +1,48 @@
+[build-system]
+requires = [
+    "setuptools",
+    "py_simple_readme"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py_libget"
+readme = "README.md"
+dynamic = [
+    "version"
+]
+description = "Module for handling libget packages."
+authors = [
+    { name = "Lyfe", email = "Lyfe@brewtools.dev" },
+]
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Console",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = []
+keywords = []
+
+[project.license]
+text = "LICENSE"
+
+[project.urls]
+homepage = "https://GitHub.com/py_libget/"
+"bug tracker" = "https://GitHub.com/py_libget/issues"
+documentation = "https://GitHub.com/py_libget/"
+repository = "https://GitHub.com/py_libget/"
+
+[tool.setuptools.dynamic.version]
+attr = "py_libget.version"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
+include = [
+    "*",
+]
