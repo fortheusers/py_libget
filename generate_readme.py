@@ -74,10 +74,10 @@ try:
     gen.add_code_block(basic_usage)
     gen.add_heading_2("Objects", add_toc=True)
     gen.handle_class_list([repository, package_manager, parser, webhandler])
+    gen.add_heading("Credits / Thanks", add_toc=True)
+    gen.add_paragraph(thanks)
     with open(os.path.join(os.path.dirname(__file__), "README.md"), "w+") as f:
         f.write(gen.assemble())
-    gen.add_heading_2("Credits / Thanks", add_toc=True)
-    gen.add_paragraph(thanks)
 except Exception as e:
     raise e
     sys.exit(1)

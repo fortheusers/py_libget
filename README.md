@@ -1,5 +1,7 @@
 # py_libget 0.0.3<a name="mark0"></a>
 
+***Module for handling libget packages.***
+
 - [About](#mark1)
 - [Dependencies](#mark2)
 - [Installation](#mark3)
@@ -9,17 +11,26 @@
 	- [package_manager](#mark7)
 	- [parser](#mark8)
 	- [webhandler](#mark9)
-- [Changelog](#mark10)
-	- [0.0.3](#mark11)
-	- [0.0.2](#mark12)
-	- [0.0.1](#mark13)
-	- [0.0.0](#mark14)
+- [Credits / Thanks](#mark10)
+- [Changelog](#mark11)
+	- [0.0.3](#mark12)
+	- [0.0.2](#mark13)
+	- [0.0.1](#mark14)
+	- [0.0.0](#mark15)
 
 ---
 
 # About<a name="mark1"></a>[^](#mark0)
 
-Module for handling libget packages.
+This module was created to simplify testing and development with libget based repository systems.
+
+py_libget maintains a cache of previously downloaded icons, screenshots and repo jsons and uses an etagging system to minimize redownloads and save bandwidth.
+The install / uninstall process should be thread-safe as long as you don't install duplicates of the same package at the same time and don't install and uninstall the same package at the same time.
+The install method takes a callback that allows it to update frontends (GUISs, Flask apps, etc) from the backend thread.
+
+It also includes a command line mode for use in scripting, the command line mode has a `--bundle` option that allows you to batch install a list of packages or generate a zip that can be extracted to an SD card.
+There are also a number of other features, see `python -m py_libget -help` for more details on command line usage.
+
 
 # Dependencies<a name="mark2"></a>[^](#mark0)
 
@@ -55,7 +66,7 @@ if not package:
     raise LookupError(f'Failed to find {package_name} in package')
 
 # Make dir to test with and set repo to install packages there
-repo.set_install_path(YOUR TARGET INSTALL DIR)
+repo.set_install_path(YOUR TARGET INSTALL DIR, MUST ALREADY EXIST)
 
 # Initialize get folder
 if not repo.check_if_get_init():
@@ -199,21 +210,25 @@ class webhandler(object):
 	def get_screenshot(self, name: str, force: bool = False) -> str:
 		"""Downloads screenshot for a given package if needed. The force keyword argument forces a redownload of the file. `Returns the screenshot file's path as a String`"""
 ```
-# Changelog<a name="mark10"></a>[^](#mark0)
+# Credits / Thanks<a name="mark10"></a>[^](#mark0)
 
-## 0.0.3<a name="mark11"></a>[^](#mark10)
+Special thanks to vgmoose and the 4TU team for the libget standard. https://gitlab.com/4TU/libget
+
+# Changelog<a name="mark11"></a>[^](#mark0)
+
+## 0.0.3<a name="mark12"></a>[^](#mark11)
 
 Improve readme / add credits
 
-## 0.0.2<a name="mark12"></a>[^](#mark10)
+## 0.0.2<a name="mark13"></a>[^](#mark11)
 
 Fix readme.
 
-## 0.0.1<a name="mark13"></a>[^](#mark10)
+## 0.0.1<a name="mark14"></a>[^](#mark11)
 
 Cleanup, fix readme.
 
-## 0.0.0<a name="mark14"></a>[^](#mark10)
+## 0.0.0<a name="mark15"></a>[^](#mark11)
 
 Create Project
 
